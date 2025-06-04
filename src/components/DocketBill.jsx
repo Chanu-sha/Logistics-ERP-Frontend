@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import logo from "../assets/SSL-Bill-Logo.png";
+import logo from "../assets/DocketLogo.png";
 import { BillingContext } from "../context/BillingContext";
 
 function DocketBill({ copyTexts }) {
@@ -55,7 +55,7 @@ function DocketBill({ copyTexts }) {
           }}
         >
           <img
-            className="mx-auto ml-[10px] h-[108px] w-[600px]"
+            className="mx-auto ml-[10px] h-[108px] w-[780px]"
             src={logo}
             alt="logo"
           />
@@ -368,7 +368,7 @@ function DocketBill({ copyTexts }) {
           }}
         >
           <img
-            className="mr-auto ml-[13px]  h-[108px] w-[600px]"
+            className="mr-auto ml-[13px]  h-[108px] w-[780px]"
             src={logo}
             alt="logo"
           />
