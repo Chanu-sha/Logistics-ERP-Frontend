@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import Logo  from "../assets/F-Logo.png";
 
 function AdminNavbar() {
   const links = [
@@ -11,10 +12,10 @@ function AdminNavbar() {
   return (
     <aside className="w-64 bg-blue-800 text-white min-h-screen p-6">
       <div className="mb-8 flex items-center">
-        <div className="h-12 w-12 bg-gray-300 rounded-full mr-4" />
+        <img src={Logo} className="h-12  mr-4" />
         <div>
           <h2 className="font-bold">Tapan Mandal</h2>
-          <p className="text-sm">shreesailogistics.in</p>
+          <a href="https://shreesailogistics.in/" className="text-sm">shreesailogistics.in</a>
         </div>
       </div>
       <nav className="space-y-2">

@@ -67,7 +67,7 @@ function DocketBill({ copyTexts }) {
               <p>
                 Plot No. B-27, Chandaka Industrial State, Patia,
                 Bhubaneswar-751024 <br />
-                Mob. 7077499999, 7381100322 Email: sreesailogistics19@gmail.com
+                Mob. 7077439999, 7381100322 Email: sreesailogistics19@gmail.com
               </p>
               <div className="mt-1">
                 <strong>GSTIN:</strong> 21AUCPN6304N1ZP
@@ -380,7 +380,7 @@ function DocketBill({ copyTexts }) {
               <p>
                 Plot No. B-27, Chandaka Industrial State, Patia,
                 Bhubaneswar-751024 <br />
-                Mob. 7077499999, 7381100322 Email: sreesailogistics19@gmail.com
+                Mob. 7077439999, 7381100322 Email: sreesailogistics19@gmail.com
               </p>
               <div className="mt-1">
                 <strong>GSTIN:</strong> 21AUCPN6304N1ZP

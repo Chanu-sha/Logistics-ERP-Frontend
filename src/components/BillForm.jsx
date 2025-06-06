@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { BillingContext } from "../context/BillingContext";
+import { useLocation } from "react-router-dom";
 
 function BillForm() {
   const { setBillData } = useContext(BillingContext);
+  const location = useLocation();
   const [formState, setFormState] = useState({
     companyName: "",
     gstin: "",
@@ -33,10 +35,56 @@ function BillForm() {
     shippingTogstin: "",
     shippingToAddress: "",
     shippingToState: "",
-    igstPercentage: 0, // Initial value 0
-    cgstPercentage: 0, // Initial value 0
-    sgstPercentage: 0, // Initial value 0
+    igstPercentage: 0,
+    cgstPercentage: 0,
+    sgstPercentage: 0,
   });
+
+  useEffect(() => {
+    if (location.state?.prefilledData) {
+      setFormState((prev) => ({
+        ...prev,
+        companyName: location.state.prefilledData.companyName || "",
+        gstin: location.state.prefilledData.gstin || "",
+        address: location.state.prefilledData.address || "",
+        // Reset all other fields to their defaults
+        invoiceDate: "",
+        invoiceNumber: generateRandomNumber("INVC"),
+        grnNumber: generateRandomNumber("GRN"),
+        from: "",
+        to: "",
+        packageCount: "",
+        transportMode: "",
+        weight: "",
+        chargeableWeight: "",
+        perKgPrice: "",
+        freightCharges: "",
+        pickupCharges: "",
+        deliveryCharges: "",
+        paymentStatus: "",
+        otherExpenses: "",
+        saidToContain: "",
+        consignerName: "",
+        consignerAddress: "",
+        consigneeName: "",
+        consigneeAddress: "",
+        BillingState: "",
+        shippingTocompanyName: "",
+        shippingTogstin: "",
+        shippingToAddress: "",
+        shippingToState: "",
+        igstPercentage: 0,
+        cgstPercentage: 0,
+        sgstPercentage: 0,
+      }));
+    } else {
+      setFormState((prev) => ({
+        ...prev,
+        invoiceNumber: generateRandomNumber("INVC"),
+        grnNumber: generateRandomNumber("GRN"),
+      }));
+    }
+  }, [location.state]);
 
   const calculateFreightCharges = (weight, price) => {
     const w = parseFloat(weight) || 0;
@@ -339,7 +387,7 @@ function BillForm() {
               >
                 <option value="">Payment Status</option>
                 <option value="Paid">Paid</option>
-                <option value="To Be Paid">To Be Paid</option>
+                <option value="To Pay">To Pay</option>
                 <option value="TBB">TBB</option>
               </select>
               <input

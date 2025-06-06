@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "../components/Modal";
 import InvoiceModalPage from "./InvoiceModalPage";
+import { useNavigate } from "react-router-dom";
 
 function SearchPage() {
   const [bills, setBills] = useState([]);
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBillId, setSelectedBillId] = useState(null);
+  const navigate = useNavigate();
 
   const fetchBills = () => {
     axios
@@ -47,6 +49,15 @@ function SearchPage() {
     }
   };
 
+  const handleAddClick = (bill) => {
+    const billData = {
+      companyName: bill.companyName,
+      gstin: bill.gstin,
+      address: bill.address,
+    };
+    navigate("/dashboard/billform", { state: { prefilledData: billData } });
+  };
+
   useEffect(() => {
     fetchBills();
   }, []);
@@ -67,7 +78,7 @@ function SearchPage() {
       <div className="mb-4">
         <input
           type="text"
-          placeholder="Search by company or shipping to name..."
+          placeholder="Search by company name..."
           className="w-full outline-none p-2 border border-gray-300 rounded"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -77,7 +88,6 @@ function SearchPage() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <InvoiceModalPage
           billId={selectedBillId}
-          onClose={() => setIsModalOpen(false)}
           onUpdate={() => fetchBills()}
         />
       </Modal>
@@ -104,6 +114,12 @@ function SearchPage() {
                 <td className="p-2">{bill.shippingTocompanyName}</td>
                 <td className="p-2">{bill.invoiceDate}</td>
                 <td className="p-2 space-x-2">
+                  <button
+                    className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+                    onClick={() => handleAddClick(bill)}
+                  >
+                    New
+                  </button>
                   <button
                     className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
                     onClick={() => handleEditClick(bill._id)}

@@ -59,7 +59,7 @@ const TaxInvoiceBill = () => {
               <p>
                 Plot No. B-27, Chandaka Industrial State, Patia,
                 Bhubaneswar-751024 <br />
-                Mob. 7077499999, 7381100322 Email: sreesailogistics19@gmail.com
+                Mob. 7077439999, 7381100322 Email: sreesailogistics19@gmail.com
               </p>
               <div className="flex gap-1.5 ">
                 <p className="font-semibold">GSTIN:</p> <p>21AUCPN6304N1ZP</p>
@@ -73,7 +73,7 @@ const TaxInvoiceBill = () => {
               </div>
             </div>
             <div>
-              <p className="font-bold">Invoice No: {billData.invoiceNo}</p>
+              <p className="font-bold">Invoice No: {billData.invoiceNumber}</p>
               <p className="font-bold">Date: {billData.invoiceDate}</p>
             </div>
           </div>

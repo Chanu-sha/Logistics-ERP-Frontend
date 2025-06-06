@@ -6,7 +6,7 @@ import Logo from "../assets/SSL-Bill-Logo.png";
 import numberToWords from "number-to-words";
 import AuthorSign from "../assets/AuthorSign.png";
 
-export default function InvoiceModalPage({ billId, onClose, onUpdate }) {
+export default function InvoiceModalPage({ billId,onUpdate }) {
   const [billData, setBillData] = useState(null);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const invoiceRef = useRef();
@@ -117,8 +117,8 @@ export default function InvoiceModalPage({ billId, onClose, onUpdate }) {
   const total = subTotal + igst + cgst + sgst;
 
   return (
-    <div>
-      <div className="scale-[.56]">
+    <div className="flex justify-center items-center" >
+      <div className="scale-[.53]">
         <div
           ref={invoiceRef}
           style={{ width: "794px", height: "1123px" }}
@@ -133,7 +133,7 @@ export default function InvoiceModalPage({ billId, onClose, onUpdate }) {
                   Bhubaneswar-751024
                 </p>
                 <p>
-                  Mob. 7077499999, 7381100322 Email:
+                  Mob. 7077439999, 7381100322 Email:
                   sreesailogistics19@gmail.com
                 </p>
                 <div className="mt-1">
@@ -320,17 +320,23 @@ export default function InvoiceModalPage({ billId, onClose, onUpdate }) {
               </p>
             </div>
             <div className="ml-auto w-1/2 text-right bg-purple-200 p-2 rounded">
-              <p>Sub Total: ₹ {subTotal.toFixed(2)}</p>
-              <p>
-                IGST {igstPercentage}%: ₹ {igst.toFixed(2)}
-              </p>
-              <p>
-                SGST {sgstPercentage}%: ₹ {sgst.toFixed(2)}
-              </p>
-              <p>
-                CGST {cgstPercentage}%: ₹ {cgst.toFixed(2)}
-              </p>
-              <p className="font-bold text-lg">Total: ₹ {total.toFixed(2)}</p>
+              <div className="w-full flex justify-between items-center ">
+                <p className="font-semibold">Sub Total: </p>{" "}
+                <p>₹{subTotal.toFixed(2)}</p>
+              </div>
+              <div className="w-full flex justify-between items-center">
+                <p className="font-semibold" >IGST {igstPercentage}%:</p> <p>₹{igst.toFixed(2)}</p>
+              </div>
+              <div className="w-full flex justify-between items-center">
+                <p className="font-semibold" >SGST {sgstPercentage}%:</p> <p>₹{sgst.toFixed(2)}</p>
+              </div>
+              <div className="w-full flex justify-between items-center">
+                <p className="font-semibold">CGST {cgstPercentage}%:</p> <p>₹{cgst.toFixed(2)}</p>
+              </div>
+              <div className="w-full flex justify-between items-center ">
+                <p className="font-bold text-lg">Total:</p>
+                <p className="font-bold text-lg">₹{total.toFixed(2)}</p>
+                </div>
             </div>
           </div>
           <table className="w-full mt-6 border-collapse">
@@ -414,12 +420,6 @@ export default function InvoiceModalPage({ billId, onClose, onUpdate }) {
           className="px-5 py-2 bg-green-600 text-white rounded hover:bg-green-700"
         >
           Save Changes
-        </button>
-        <button
-          onClick={onClose}
-          className="px-5 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-        >
-          Close
         </button>
       </div>
     </div>
