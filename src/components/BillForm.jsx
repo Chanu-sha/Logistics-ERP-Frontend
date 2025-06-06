@@ -30,54 +30,14 @@ function BillForm() {
     consignerAddress: "",
     consigneeName: "",
     consigneeAddress: "",
-    BillingState: "",
     shippingTocompanyName: "",
     shippingTogstin: "",
     shippingToAddress: "",
-    shippingToState: "",
     igstPercentage: 0,
     cgstPercentage: 0,
     sgstPercentage: 0,
   });
 
-  const statesList = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Delhi",
-    "Jammu and Kashmir",
-    "Ladakh",
-    "Puducherry",
-    "Chandigarh",
-    "Andaman and Nicobar Islands",
-    "Dadra and Nagar Haveli and Daman and Diu",
-    "Lakshadweep",
-  ];
 
   useEffect(() => {
     if (location.state?.prefilledData) {
@@ -204,7 +164,6 @@ function BillForm() {
           shippingTocompanyName: "",
           shippingTogstin: "",
           shippingToAddress: "",
-          shippingToState: "",
           packageCount: "",
           weight: "",
           perKgPrice: "",
@@ -224,7 +183,6 @@ function BillForm() {
           consignerAddress: "",
           consigneeName: "",
           consigneeAddress: "",
-          BillingState: "",
         });
       }
     } catch (error) {
@@ -264,19 +222,6 @@ function BillForm() {
                   placeholder="Shipping Address (From)"
                   className="border p-2 rounded text-sm resize-none h-16 md:col-span-2"
                 />
-                <select
-                  name="BillingState"
-                  value={formState.BillingState}
-                  onChange={handleChange}
-                  className="border p-2 rounded text-sm"
-                >
-                  <option value="">Select Billing State</option>
-                  {statesList.map((state) => (
-                    <option key={state} value={state}>
-                      {state}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
             <div>
@@ -303,19 +248,6 @@ function BillForm() {
                   placeholder="Shipping Address (To)"
                   className="border p-2 rounded text-sm resize-none h-16 md:col-span-2"
                 />
-                <select
-                  name="shippingToState"
-                  value={formState.shippingToState}
-                  onChange={handleChange}
-                  className="border p-2 rounded text-sm"
-                >
-                  <option value="">Select Shipping State</option>
-                  {statesList.map((state) => (
-                    <option key={state} value={state}>
-                      {state}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
 
