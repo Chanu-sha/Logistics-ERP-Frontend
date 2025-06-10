@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { BillingContext } from "../context/BillingContext";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function BillForm() {
   const { setBillData } = useContext(BillingContext);
@@ -38,7 +39,6 @@ function BillForm() {
     sgstPercentage: 0,
   });
 
-
   useEffect(() => {
     if (location.state?.prefilledData) {
       setFormState((prev) => ({
@@ -46,7 +46,6 @@ function BillForm() {
         companyName: location.state.prefilledData.companyName || "",
         gstin: location.state.prefilledData.gstin || "",
         address: location.state.prefilledData.address || "",
-        // Reset all other fields to their defaults
         invoiceDate: "",
         invoiceNumber: generateRandomNumber("INVC"),
         grnNumber: generateRandomNumber("GRN"),
@@ -153,7 +152,7 @@ function BillForm() {
       );
 
       if (response.status === 201) {
-        alert("Bill Details Saved Successfully!");
+        toast.success("Bill Details Saved Successfully!");
         setFormState({
           companyName: "",
           gstin: "",
@@ -187,7 +186,7 @@ function BillForm() {
       }
     } catch (error) {
       console.error("Error saving to DB:", error);
-      alert("Failed to save bill details.");
+      toast.error("Failed to save bill details.");
     }
   };
 
