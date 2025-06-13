@@ -3,8 +3,6 @@ import domtoimage from "dom-to-image-more";
 import jsPDF from "jspdf";
 import TaxInvoiceBill from "../components/TaxInvoiceBill";
 
-
-
 export default function InvoicePage() {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const invoiceRef = useRef();

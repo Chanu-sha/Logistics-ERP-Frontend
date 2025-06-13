@@ -269,7 +269,7 @@ function DocketBill({ copyTexts }) {
                   <tr className="bg-gray-100 font-bold">
                     <td className="outline outline-black p-2">GRAND TOTAL</td>
                     <td className="outline outline-black p-2">
-                      {formatCurrency(grandTotal)} Rs
+                     ₹ {formatCurrency(grandTotal)} 
                     </td>
                   </tr>
                 </tbody>
@@ -582,7 +582,7 @@ function DocketBill({ copyTexts }) {
                   <tr className="bg-gray-100 font-bold">
                     <td className="outline outline-black p-2">GRAND TOTAL</td>
                     <td className="outline outline-black p-2">
-                      {formatCurrency(grandTotal)} Rs
+                     ₹ {formatCurrency(grandTotal)}
                     </td>
                   </tr>
                 </tbody>

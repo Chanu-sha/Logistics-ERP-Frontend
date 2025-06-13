@@ -3,10 +3,11 @@ import Logo  from "../assets/F-Logo.png";
 
 function AdminNavbar() {
   const links = [
-    { name: "Dashboard Home", to: "/dashboard" },
+    { name: "Dashboard", to: "/dashboard" },
     { name: "DocketPage", to: "/dashboard/docketPage" },
     { name: "InvoicePage", to: "/dashboard/invoicepage" },
-    { name: "Search", to: "/dashboard/search" },
+    { name: "InvoiceList", to: "/dashboard/fetchInvoice" },
+    { name: "DocketList", to: "/dashboard/fetchDocket" },
   ];
 
   return (

@@ -72,8 +72,8 @@ const TaxInvoiceBill = () => {
                 <p>UDYAM-OD-19-0021152</p>
               </div>
             </div>
-            <div>
-              <p className="font-bold">Invoice No: {billData.invoiceNumber}</p>
+            <div >
+              <p className="font-bold w-[190px] ">Invoice No: {billData.invoiceNumber}</p>
               <p className="font-bold">Date: {billData.invoiceDate}</p>
             </div>
           </div>
@@ -167,7 +167,7 @@ const TaxInvoiceBill = () => {
               No. Of Packages
             </th>
             <th className="outline outline-black px-1 text-center w-[80px]">
-              Total Weight
+              Weight
             </th>
             <th className="outline outline-black px-1 text-center w-[80px]">
               Price/Kg
@@ -205,25 +205,25 @@ const TaxInvoiceBill = () => {
               {billData.weight} Kg
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {billData.perKgPrice} Rs
+              {billData.perKgPrice} 
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {freight.toFixed(2)} Rs
+              {freight.toFixed(2)} 
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              50.00 Rs
+              50.00 
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {pickup.toFixed(2)} Rs
+              {pickup.toFixed(2)} 
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {delivery.toFixed(2)} Rs
+              {delivery.toFixed(2)} 
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {otherExpenses.toFixed(2)} Rs
+              {otherExpenses.toFixed(2)} 
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {subTotal.toFixed(2)} Rs
+              {subTotal.toFixed(2)} 
             </td>
           </tr>
         </tbody>
@@ -241,23 +241,23 @@ const TaxInvoiceBill = () => {
         <div className="ml-auto w-[397px] text-right bg-purple-200">
           <div className="flex justify-between bg-purple-600 text-[15.6px] font-semibold">
             <span>Sub Total:</span>
-            <span>{subTotal.toFixed(2)} Rs </span>
+            <span>{subTotal.toFixed(2)}  </span>
           </div>
           <div className="flex justify-between">
             <span>IGST {igstRate}%</span>
-            <span>{igst.toFixed(2)} Rs </span>
+            <span>{igst.toFixed(2)}  </span>
           </div>
           <div className="flex justify-between">
             <span>SGST {sgstRate}%</span>
-            <span>{sgst.toFixed(2)} Rs </span>
+            <span>{sgst.toFixed(2)} </span>
           </div>
           <div className="flex justify-between">
             <span>CGST {cgstRate}%</span>
-            <span>{cgst.toFixed(2)} Rs </span>
+            <span>{cgst.toFixed(2)} </span>
           </div>
           <div className="flex justify-between text-[15.6px] font-semibold text-black">
             <span>Total</span>
-            <span>{total.toFixed(2)} Rs </span>
+            <span> ₹ {total.toFixed(2)}  </span>
           </div>
         </div>
       </div>

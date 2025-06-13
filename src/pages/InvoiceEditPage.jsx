@@ -6,45 +6,53 @@ import Logo from "../assets/SSL-Bill-Logo.png";
 import numberToWords from "number-to-words";
 import AuthorSign from "../assets/AuthorSign.png";
 
-export default function InvoiceModalPage({ billId,onUpdate }) {
+export default function InvoiceEditPage({ billId, onUpdate }) {
   const [billData, setBillData] = useState(null);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const invoiceRef = useRef();
 
   useEffect(() => {
-    if (!billId) {
-      setBillData(null);
-      return;
-    }
+    if (!billId) return;
 
     const fetchBill = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_APP_MAINURL}/${billId}`
+          `${import.meta.env.VITE_APP_INVOICE_API}/${billId}`
         );
         setBillData(res.data);
       } catch (err) {
         console.error("Error fetching bill data:", err);
-        setBillData(null);
       }
     };
-
     fetchBill();
   }, [billId]);
 
   const handleDownloadPDF = async () => {
     if (!invoiceRef.current) return;
     setIsGeneratingPDF(true);
-    const pdf = new jsPDF("p", "pt", "a4");
+
+    const invoiceElement = invoiceRef.current;
+
+    const allElements = invoiceElement.querySelectorAll("*");
+    const originalStyles = [];
+
+    allElements.forEach((el) => {
+      const style = {
+        border: el.style.border,
+      };
+      originalStyles.push(style);
+
+      el.style.border = "none";
+    });
 
     try {
-      const dataUrl = await domtoimage.toPng(invoiceRef.current, {
+      const dataUrl = await domtoimage.toPng(invoiceElement, {
         quality: 1,
-        width: invoiceRef.current.offsetWidth,
-        height: invoiceRef.current.offsetHeight,
-        style: { transform: "none", overflow: "visible", border: "none" },
+        width: invoiceElement.offsetWidth,
+        height: invoiceElement.offsetHeight,
       });
 
+      const pdf = new jsPDF("p", "pt", "a4");
       const imgProps = pdf.getImageProperties(dataUrl);
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
@@ -63,20 +71,24 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
     } catch (error) {
       console.error("Error generating PDF:", error);
     } finally {
+      // Step 2: Restore original styles
+      allElements.forEach((el, i) => {
+        el.style.border = originalStyles[i].border;
+        el.style.outline = originalStyles[i].outline;
+        el.style.boxShadow = originalStyles[i].boxShadow;
+      });
+
       setIsGeneratingPDF(false);
     }
   };
 
   const handleSaveChanges = async () => {
-    if (!billData) return;
-
     try {
       await axios.put(
-        `${import.meta.env.VITE_APP_MAINURL}/${billId}`,
+        `${import.meta.env.VITE_APP_INVOICE_API}/${billId}`,
         billData
       );
       onUpdate();
-      onClose();
     } catch (err) {
       console.error("Error saving changes:", err);
     }
@@ -117,7 +129,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
   const total = subTotal + igst + cgst + sgst;
 
   return (
-    <div className="flex justify-center items-center" >
+    <div className="flex justify-center items-center">
       <div className="scale-[.53]">
         <div
           ref={invoiceRef}
@@ -150,7 +162,15 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                 <p className="font-bold">
                   Invoice No: {billData.invoiceNumber}
                 </p>
-                <p className="font-bold">Date: {billData.invoiceDate}</p>
+                <div className="flex gap-1.5">
+                  <p className="font-bold">Date:</p>
+                  <input
+                    value={billData.invoiceDate}
+                    onChange={(e) =>
+                      handleInputChange("invoiceDate", e.target.value)
+                    }
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -188,9 +208,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                 <p>From:</p>
                 <input
                   value={billData.from}
-                  onChange={(e) =>
-                    handleInputChange("BillingState", e.target.value)
-                  }
+                  onChange={(e) => handleInputChange("from", e.target.value)}
                   className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px]"
                 />
               </div>
@@ -228,9 +246,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                 <p>To:</p>
                 <input
                   value={billData.to}
-                  onChange={(e) =>
-                    handleInputChange("shippingToState", e.target.value)
-                  }
+                  onChange={(e) => handleInputChange("to", e.target.value)}
                   className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px]"
                 />
               </div>
@@ -256,7 +272,13 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
               <tr>
                 <td className="outline text-center">1</td>
                 <td className="outline text-center">
-                  {billData.invoiceNumber}
+                  <input
+                    value={billData.grnNumber}
+                    onChange={(e) =>
+                      handleInputChange("grnNumber", e.target.value)
+                    }
+                    className="w-[50px] text-center  rounded-[2px]"
+                  />
                 </td>
                 <td className="outline text-center">
                   <input
@@ -264,7 +286,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                     onChange={(e) =>
                       handleInputChange("packageCount", e.target.value)
                     }
-                    className="w-[50px] text-center outline-black outline rounded-[2px]"
+                    className="w-[50px] text-center  rounded-[2px]"
                   />
                 </td>
                 <td className="outline text-center">
@@ -273,7 +295,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                     onChange={(e) =>
                       handleInputChange("weight", e.target.value)
                     }
-                    className="w-[50px] text-center outline-black outline rounded-[2px]"
+                    className="w-[50px] text-center  rounded-[2px]"
                   />
                 </td>
                 <td className="outline text-center">
@@ -282,7 +304,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                     onChange={(e) =>
                       handleInputChange("perKgPrice", e.target.value)
                     }
-                    className="w-[50px] text-center outline-black outline rounded-[2px]"
+                    className="w-[50px] text-center  rounded-[2px]"
                   />
                 </td>
                 <td className="outline text-center">
@@ -295,7 +317,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                     onChange={(e) =>
                       handleInputChange("pickupCharges", e.target.value)
                     }
-                    className="w-[50px] text-center outline-black outline rounded-[2px]"
+                    className="w-[50px] text-center  rounded-[2px]"
                   />
                 </td>
                 <td className="outline text-center">
@@ -304,7 +326,7 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                     onChange={(e) =>
                       handleInputChange("deliveryCharges", e.target.value)
                     }
-                    className="w-[50px] text-center outline-black outline rounded-[2px]"
+                    className="w-[50px] text-center  rounded-[2px]"
                   />
                 </td>
                 <td className="outline text-center">{subTotal.toFixed(2)}</td>
@@ -325,18 +347,21 @@ export default function InvoiceModalPage({ billId,onUpdate }) {
                 <p>₹{subTotal.toFixed(2)}</p>
               </div>
               <div className="w-full flex justify-between items-center">
-                <p className="font-semibold" >IGST {igstPercentage}%:</p> <p>₹{igst.toFixed(2)}</p>
+                <p className="font-semibold">IGST {igstPercentage}%:</p>{" "}
+                <p>₹{igst.toFixed(2)}</p>
               </div>
               <div className="w-full flex justify-between items-center">
-                <p className="font-semibold" >SGST {sgstPercentage}%:</p> <p>₹{sgst.toFixed(2)}</p>
+                <p className="font-semibold">SGST {sgstPercentage}%:</p>{" "}
+                <p>₹{sgst.toFixed(2)}</p>
               </div>
               <div className="w-full flex justify-between items-center">
-                <p className="font-semibold">CGST {cgstPercentage}%:</p> <p>₹{cgst.toFixed(2)}</p>
+                <p className="font-semibold">CGST {cgstPercentage}%:</p>{" "}
+                <p>₹{cgst.toFixed(2)}</p>
               </div>
               <div className="w-full flex justify-between items-center ">
                 <p className="font-bold text-lg">Total:</p>
                 <p className="font-bold text-lg">₹{total.toFixed(2)}</p>
-                </div>
+              </div>
             </div>
           </div>
           <table className="w-full mt-6 border-collapse">
