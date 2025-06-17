@@ -8,10 +8,26 @@ function InvoiceForm() {
   const { setBillData } = useContext(BillingContext);
   const navigate = useNavigate();
 
-  const generateInvoiceNumber = () => {
-    const randomNum = Math.floor(1000 + Math.random() * 9000); // 4-digit number
-    return `SSL${randomNum}/25-26`;
-  };
+  useEffect(() => {
+    const fetchInvoiceNumber = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_INVOICE_API}/next-invoice-number`
+        );
+        if (response.status === 200) {
+          setFormState((prev) => ({
+            ...prev,
+            invoiceNumber: response.data.nextInvoiceNumber,
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching invoice number:", error);
+      }
+    };
+
+    fetchInvoiceNumber();
+  }, []);
+
   const location = useLocation();
   const prefilledData = location.state?.prefilledData;
 
@@ -20,7 +36,7 @@ function InvoiceForm() {
     gstin: prefilledData?.gstin || "",
     address: prefilledData?.address || "",
     invoiceDate: "",
-    invoiceNumber: generateInvoiceNumber(),
+    invoiceNumber: prefilledData?.invoiceNumber || "",
     grnNumber: "",
     shippingTocompanyName: "",
     shippingTogstin: "",

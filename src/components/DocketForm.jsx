@@ -44,13 +44,34 @@ function DocketForm() {
       ...prev,
       consignerName: prefilled?.consignerName || "",
       consignerAddress: prefilled?.consignerAddress || "",
-      grnNumber: generateRandomNumber(),
+      grnNumber: prefilled?.grnNumber || "",
     }));
   }, [location.state]);
 
-  const generateRandomNumber = () => {
-    return Math.floor(1000 + Math.random() * 9000).toString();
-  };
+  useEffect(() => {
+    const prefilled = location.state?.prefilledData;
+
+    const fetchGRNNumber = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_DOCKET_API}/generate/grn-number`
+        );
+        if (response.status === 200) {
+          setFormState((prev) => ({
+            ...prev,
+            grnNumber: response.data.grnNumber,
+            consignerName: prefilled?.consignerName || "",
+            consignerAddress: prefilled?.consignerAddress || "",
+          }));
+        }
+      } catch (err) {
+        console.error("Error fetching GRN Number:", err);
+        alert("Failed to fetch GRN Number from server");
+      }
+    };
+
+    fetchGRNNumber();
+  }, [location.state]);
 
   const calculateFreightCharges = (weight, price) => {
     const w = parseFloat(weight) || 0;

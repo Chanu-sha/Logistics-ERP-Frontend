@@ -12,6 +12,9 @@ import FetchInvoice from "./pages/FetchInvoice";
 import FetchDocket from "./pages/FetchDocket";
 import DocketEditPage from "./pages/DocketEditPage";
 import FormLayout from "./components/FormLayout";
+import LaserPage from "./pages/LaserPage";
+import FetchLaser from "./pages/FetchLaser";
+import LaserEditPage from "./pages/LaserEditPage";
 
 function App() {
   return (
@@ -35,10 +38,13 @@ function App() {
             {/* Other dashboard routes */}
             <Route path="docketPage" element={<DocketPage />} />
             <Route path="invoicepage" element={<InvoicePage />} />
+            <Route path="laserpage" element={<LaserPage />} />
             <Route path="invoice" element={<TaxInvoiceBill />} />
             <Route path="fetchInvoice" element={<FetchInvoice />} />
             <Route path="fetchDocket" element={<FetchDocket />} />
+            <Route path="fetchLaser" element={<FetchLaser />} />
             <Route path="editdocket/:id" element={<DocketEditPage />} />
+            <Route path="editlaser/:id" element={<LaserEditPage />} />
           </Route>
         </Route>
 

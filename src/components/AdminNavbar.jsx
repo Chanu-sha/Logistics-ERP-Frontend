@@ -6,8 +6,10 @@ function AdminNavbar() {
     { name: "Dashboard", to: "/dashboard" },
     { name: "DocketPage", to: "/dashboard/docketPage" },
     { name: "InvoicePage", to: "/dashboard/invoicepage" },
+    { name: "LaserPage", to: "/dashboard/laserpage" },
     { name: "InvoiceList", to: "/dashboard/fetchInvoice" },
     { name: "DocketList", to: "/dashboard/fetchDocket" },
+    { name: "LaserList", to: "/dashboard/fetchLaser" },
   ];
 
   return (
