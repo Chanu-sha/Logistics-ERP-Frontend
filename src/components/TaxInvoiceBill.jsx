@@ -238,24 +238,24 @@ const TaxInvoiceBill = () => {
           </p>
         </div>
 
-        <div className="ml-auto w-[397px] text-right bg-purple-200">
-          <div className="flex justify-between bg-purple-600 text-[15.6px] font-semibold">
+        <div className="ml-auto w-[397px]  text-right bg-purple-200">
+          <div className="flex justify-between  px-3 bg-purple-600 text-[15.6px] font-semibold">
             <span>Sub Total:</span>
             <span>{subTotal.toFixed(2)}  </span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between px-3">
             <span>IGST {igstRate}%</span>
             <span>{igst.toFixed(2)}  </span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between px-3">
             <span>SGST {sgstRate}%</span>
             <span>{sgst.toFixed(2)} </span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between px-3">
             <span>CGST {cgstRate}%</span>
             <span>{cgst.toFixed(2)} </span>
           </div>
-          <div className="flex justify-between text-[15.6px] font-semibold text-black">
+          <div className="flex justify-between px-3 text-[15.6px] font-semibold text-black">
             <span>Total</span>
             <span> ₹ {total.toFixed(2)}  </span>
           </div>

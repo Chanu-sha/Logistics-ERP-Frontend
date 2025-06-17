@@ -80,7 +80,7 @@ function DocketBill({ copyTexts }) {
               </div>
             </div>
             <div className="flex justify-between mt-1 text-sm">
-              <div className="absolute top-[80px] right-[10px]">
+              <div className="absolute top-[85px] right-[10px]">
                 <div>
                   <div>
                     <strong>G.R. No:</strong>
@@ -95,9 +95,9 @@ function DocketBill({ copyTexts }) {
                     <strong>Date:</strong>
                     <input
                       type="text"
-                      value={billData.invoiceDate}
+                      value={billData.grDate}
                       readOnly
-                      className="outline pl-1 outline-black ml-[24px] mt-[8px] rounded-sm w-[80px] h-[28.8px]"
+                      className="outline pl-1 outline-black ml-[24px] mt-[5px] rounded-sm w-[80px] h-[28.8px]"
                     />
                   </div>
                 </div>
@@ -171,12 +171,12 @@ function DocketBill({ copyTexts }) {
                   </div>
                   <div className="mt-2 flex gap-1">
                     <label className="font-bold text-[15px]">
-                      Said to Contain:
+                     Description of Goods:
                     </label>
                     <input
                       value={billData.saidToContain}
                       readOnly
-                      className="outline pl-1 outline-black rounded-sm w-[422px] h-[28.8px]"
+                      className="outline pl-1 outline-black rounded-sm w-[380px] h-[28.8px]"
                     />
                   </div>
                 </div>
@@ -401,16 +401,16 @@ function DocketBill({ copyTexts }) {
                       value={billData.grnNumber}
                       readOnly
                       type="text"
-                      className="outline outline-black ml-1 pl-1.5 rounded-sm w-[80px] h-[28.8px]"
+                      className="outline outline-black ml-1 pl-1.5 rounded-sm w-[85px] h-[28.8px]"
                     />
                   </div>
                   <div>
                     <strong>Date:</strong>
                     <input
                       type="text"
-                      value={billData.invoiceDate}
+                      value={billData.grDate}
                       readOnly
-                      className="outline pl-1 outline-black ml-[24px] mt-[8px] rounded-sm w-[80px] h-[28.8px]"
+                      className="outline pl-1 outline-black ml-[24px] mt-[5px] rounded-sm w-[80px] h-[28.8px]"
                     />
                   </div>
                 </div>
@@ -484,12 +484,12 @@ function DocketBill({ copyTexts }) {
                   </div>
                   <div className="mt-2 flex gap-1">
                     <label className="font-bold text-[15px]">
-                      Said to Contain:
+                      Description of Goods:
                     </label>
                     <input
                       value={billData.saidToContain}
                       readOnly
-                      className="outline pl-1 outline-black rounded-sm w-[422px] h-[28.8px]"
+                      className="outline pl-1 outline-black rounded-sm w-[380px] h-[28.8px]"
                     />
                   </div>
                 </div>

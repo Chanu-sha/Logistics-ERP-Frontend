@@ -165,7 +165,7 @@ const handleDownloadPDF = async () => {
                       <input
                         type="text"
                         name="invoiceDate"
-                        value={billData.invoiceDate?.slice(0, 10)}
+                        value={billData.grDate?.slice(0, 10)}
                         onChange={handleChange}
                         className="outline outline-black pl-1 ml-[24px] mt-[8px] rounded-sm w-[80px] h-[28.8px]"
                       />
@@ -268,7 +268,7 @@ const handleDownloadPDF = async () => {
                     </div>
                     <div className="mt-2 flex gap-1">
                       <label className="font-bold text-[15px]">
-                        Said to Contain:
+                       Description of Goods:
                       </label>
                       <input
                         name="saidToContain"

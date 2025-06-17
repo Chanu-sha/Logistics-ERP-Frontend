@@ -10,12 +10,10 @@ function DocketForm() {
 
   const location = useLocation();
   const [formState, setFormState] = useState({
-    companyName: "",
-    gstin: "",
-    address: "",
     invoiceDate: "",
     invoiceNumber: "",
     grnNumber: "",
+    grDate: "",
     from: "",
     to: "",
     packageCount: "",
@@ -194,7 +192,7 @@ function DocketForm() {
                 placeholder="Invoice Number"
                 className="border p-2 rounded text-sm"
               />
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1   w-[515px]">
                 <p className="font-semibold">Gr No.</p>
                 <input
                   name="grnNumber"
@@ -203,6 +201,13 @@ function DocketForm() {
                   placeholder="GR Number"
                   className="border p-2 rounded text-sm bg-gray-100"
                   readOnly
+                />
+                <input
+                  name="grDate"
+                  value={formState.grDate}
+                  onChange={handleChange}
+                  placeholder="Gr Date"
+                  className="border p-2 ml-5 rounded text-sm"
                 />
               </div>
               <div className="col-span-2 grid grid-cols-2 gap-4">
@@ -324,7 +329,7 @@ function DocketForm() {
                 name="saidToContain"
                 value={formState.saidToContain}
                 onChange={handleChange}
-                placeholder="Said to Contain"
+                placeholder="Description of Goods"
                 className="border p-2 rounded text-sm"
               />
               <select
