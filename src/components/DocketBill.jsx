@@ -148,36 +148,36 @@ function DocketBill({ copyTexts }) {
                     />
                   </div>
                 </div>
-                <div className="absolute scale-[.8] top-[400px] left-[-38px]">
-                  <div className="flex gap-1">
-                    <div className="mb-1 flex flex-col gap-1">
+                <div className="absolute scale-[.8] top-[410px] left-[-42px]">
+                  <div className="flex gap-2.5 items-center">
+                    <div className="flex flex-col gap-1">
+                      <label className="font-bold text-[13px]">
+                        Description of Goods:
+                      </label>
+                      <input
+                        value={billData.saidToContain}
+                        readOnly
+                        className="outline pl-1 outline-black rounded-sm w-[310px] h-[28.8px]"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
                       <strong>Invoice No.:</strong>
                       <input
                         value={billData.invoiceNumber}
                         readOnly
                         type="text"
-                        className="outline pl-1.5 outline-black rounded-sm w-[255px] h-[28.8px]"
+                        className="outline pl-1.5 outline-black rounded-sm w-[116px] h-[28.8px]"
                       />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <strong className="ml-[16px]">Invoce Date:</strong>
+                      <strong>Invoce Date:</strong>
                       <input
                         value={billData.invoiceDate}
                         readOnly
                         type="text"
-                        className="outline pl-1.5 outline-black ml-[20px] rounded-sm w-[260px] h-[28.8px]"
+                        className="outline pl-1.5 outline-black  rounded-sm w-[96px] h-[28.8px]"
                       />
                     </div>
-                  </div>
-                  <div className="mt-2 flex gap-1">
-                    <label className="font-bold text-[15px]">
-                     Description of Goods:
-                    </label>
-                    <input
-                      value={billData.saidToContain}
-                      readOnly
-                      className="outline pl-1 outline-black rounded-sm w-[380px] h-[28.8px]"
-                    />
                   </div>
                 </div>
               </div>
@@ -269,7 +269,7 @@ function DocketBill({ copyTexts }) {
                   <tr className="bg-gray-100 font-bold">
                     <td className="outline outline-black p-2">GRAND TOTAL</td>
                     <td className="outline outline-black p-2">
-                     ₹ {formatCurrency(grandTotal)} 
+                      ₹ {formatCurrency(grandTotal)}
                     </td>
                   </tr>
                 </tbody>
@@ -337,7 +337,7 @@ function DocketBill({ copyTexts }) {
               </table>
             </div>
             {/* Terms & Signature */}
-            <div className="absolute left-[-60px] bottom-[-4px] scale-[.75] text-[13px]">
+            <div className="absolute left-[-60px] bottom-[10px] scale-[.75] text-[13px]">
               <strong>TERMS & CONDITIONS:</strong>
               <p className="w-[580px]">
                 1. We do not accept cash, jewellery, drugs, inflammables/
@@ -461,36 +461,36 @@ function DocketBill({ copyTexts }) {
                     />
                   </div>
                 </div>
-                <div className="absolute scale-[.8] top-[400px] left-[-38px]">
-                  <div className="flex gap-1">
-                    <div className="mb-1 flex flex-col gap-1">
+                <div className="absolute scale-[.8] top-[410px] left-[-42px]">
+                  <div className="flex gap-2.5 items-center">
+                    <div className="flex flex-col gap-1">
+                      <label className="font-bold text-[13px]">
+                        Description of Goods:
+                      </label>
+                      <input
+                        value={billData.saidToContain}
+                        readOnly
+                        className="outline pl-1 outline-black rounded-sm w-[310px] h-[28.8px]"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
                       <strong>Invoice No.:</strong>
                       <input
                         value={billData.invoiceNumber}
                         readOnly
                         type="text"
-                        className="outline pl-1.5 outline-black rounded-sm w-[255px] h-[28.8px]"
+                        className="outline pl-1.5 outline-black rounded-sm w-[116px] h-[28.8px]"
                       />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <strong className="ml-[16px]">Invoce Date:</strong>
+                      <strong>Invoce Date:</strong>
                       <input
                         value={billData.invoiceDate}
                         readOnly
                         type="text"
-                        className="outline pl-1.5 outline-black ml-[20px] rounded-sm w-[260px] h-[28.8px]"
+                        className="outline pl-1.5 outline-black  rounded-sm w-[96px] h-[28.8px]"
                       />
                     </div>
-                  </div>
-                  <div className="mt-2 flex gap-1">
-                    <label className="font-bold text-[15px]">
-                      Description of Goods:
-                    </label>
-                    <input
-                      value={billData.saidToContain}
-                      readOnly
-                      className="outline pl-1 outline-black rounded-sm w-[380px] h-[28.8px]"
-                    />
                   </div>
                 </div>
               </div>
@@ -582,7 +582,7 @@ function DocketBill({ copyTexts }) {
                   <tr className="bg-gray-100 font-bold">
                     <td className="outline outline-black p-2">GRAND TOTAL</td>
                     <td className="outline outline-black p-2">
-                     ₹ {formatCurrency(grandTotal)}
+                      ₹ {formatCurrency(grandTotal)}
                     </td>
                   </tr>
                 </tbody>
@@ -650,7 +650,7 @@ function DocketBill({ copyTexts }) {
               </table>
             </div>
             {/* Terms & Signature */}
-            <div className="absolute left-[-60px] bottom-[-4px] scale-[.75] text-[13px]">
+            <div className="absolute left-[-60px] bottom-[10px] scale-[.75] text-[13px]">
               <strong>TERMS & CONDITIONS:</strong>
               <p className="w-[580px]">
                 1. We do not accept cash, jewellery, drugs, inflammables/
