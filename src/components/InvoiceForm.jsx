@@ -126,8 +126,8 @@ function InvoiceForm() {
   };
 
   return (
-    <div className="bg-white w-full h-full pt-0 p-4 overflow-auto">
-      <div className="bg-white pt-2 p-6 rounded-xl flex flex-col">
+    <div className="bg-white w-full h-[92vh] pt-0 p-4 overflow-auto">
+      <div className="bg-white  p-6 rounded-xl flex flex-col">
         <h1 className="text-2xl font-bold text-blue-800 mb-4">Invoice Form</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* From Company */}
