@@ -181,41 +181,7 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
 
           <div className="flex justify-between my-4">
             <div className="w-1/2 pr-4">
-              <p className="font-bold mb-1">Bill To:</p>
-              <p>Company Name:</p>
-              <input
-                value={billData.companyName}
-                onChange={(e) =>
-                  handleInputChange("companyName", e.target.value)
-                }
-                className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px] mb-2"
-              />
-              <p>Address:</p>
-              <textarea
-                value={billData.address}
-                onChange={(e) => handleInputChange("address", e.target.value)}
-                className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
-              />
-              <div className="flex gap-1">
-                <p>GSTIN:</p>
-                <input
-                  value={billData.gstin}
-                  onChange={(e) => handleInputChange("gstin", e.target.value)}
-                  className="w-full pl-1.5 outline-black outline rounded-[2px] mb-2"
-                />
-              </div>
-              <div className="flex gap-1 items-center">
-                <p>From:</p>
-                <input
-                  value={billData.from}
-                  onChange={(e) => handleInputChange("from", e.target.value)}
-                  className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px]"
-                />
-              </div>
-            </div>
-
-            <div className="w-1/2 pr-4">
-              <p className="font-bold mb-1">Shipping To:</p>
+              <p className="font-bold mb-1">Sender:</p>
               <p>Company Name:</p>
               <input
                 value={billData.shippingTocompanyName}
@@ -232,16 +198,31 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 }
                 className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
               />
-              <div className="flex gap-1">
-                <p>GSTIN:</p>
+              <div className="flex gap-1 items-center">
+                <p>From:</p>
                 <input
-                  value={billData.shippingTogstin}
-                  onChange={(e) =>
-                    handleInputChange("shippingTogstin", e.target.value)
-                  }
-                  className="w-full pl-1.5 outline-black outline rounded-[2px] mb-2"
+                  value={billData.from}
+                  onChange={(e) => handleInputChange("from", e.target.value)}
+                  className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px]"
                 />
               </div>
+            </div>
+            <div className="w-1/2 pr-4">
+              <p className="font-bold mb-1">Bill To:</p>
+              <p>Company Name:</p>
+              <input
+                value={billData.companyName}
+                onChange={(e) =>
+                  handleInputChange("companyName", e.target.value)
+                }
+                className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px] mb-2"
+              />
+              <p>Address:</p>
+              <textarea
+                value={billData.address}
+                onChange={(e) => handleInputChange("address", e.target.value)}
+                className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
+              />
               <div className="flex gap-1 items-center">
                 <p>To:</p>
                 <input

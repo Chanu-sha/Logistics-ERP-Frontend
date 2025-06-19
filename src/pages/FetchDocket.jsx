@@ -65,7 +65,7 @@ function FetchDocket() {
   );
 
   return (
-    <div className="p-4 h-[95vh] w-full mx-4 bg-white rounded-xl shadow">
+    <div className="p-4 h-[95vh] w-full mx-4 bg-white rounded-xl  overflow-y-auto shadow">
       <ToastContainer position="top-center" autoClose={3000} />
       <div className="mb-4">
         <input

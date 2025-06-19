@@ -33,13 +33,11 @@ function InvoiceForm() {
 
   const [formState, setFormState] = useState({
     companyName: prefilledData?.companyName || "",
-    gstin: prefilledData?.gstin || "",
     address: prefilledData?.address || "",
     invoiceDate: "",
     invoiceNumber: prefilledData?.invoiceNumber || "",
     grnNumber: "",
     shippingTocompanyName: "",
-    shippingTogstin: "",
     shippingToAddress: "",
     packageCount: "",
     weight: "",
@@ -135,20 +133,13 @@ function InvoiceForm() {
           {/* From Company */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h2 className="font-semibold mb-1">From</h2>
+              <h2 className="font-semibold mb-1">Sender</h2>
               <input
                 name="companyName"
                 value={formState.companyName}
                 onChange={handleChange}
                 placeholder="Company Name"
                 className="border p-2 w-full rounded"
-              />
-              <input
-                name="gstin"
-                value={formState.gstin}
-                onChange={handleChange}
-                placeholder="GSTIN"
-                className="border p-2 w-full rounded mt-2"
               />
               <textarea
                 name="address"
@@ -169,13 +160,7 @@ function InvoiceForm() {
                 placeholder="Company Name"
                 className="border p-2 w-full rounded"
               />
-              <input
-                name="shippingTogstin"
-                value={formState.shippingTogstin}
-                onChange={handleChange}
-                placeholder="GSTIN"
-                className="border p-2 w-full rounded mt-2"
-              />
+
               <textarea
                 name="shippingToAddress"
                 value={formState.shippingToAddress}

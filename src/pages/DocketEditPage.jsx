@@ -274,7 +274,7 @@ const handleDownloadPDF = async () => {
                         name="saidToContain"
                         value={billData.saidToContain}
                         onChange={handleChange}
-                        className="boroutline outline-blackder pl-1 rounded-sm w-[422px] h-[28.8px]"
+                        className="outline outline-black pl-1 rounded-sm w-[422px] h-[28.8px]"
                       />
                     </div>
                   </div>
@@ -518,7 +518,7 @@ const handleDownloadPDF = async () => {
                         >
                           <option value="Road">Surface</option>
                           <option value="Air">Air</option>
-                          <option value="Rail">Rail</option>
+                          <option value="Rail">Train</option>
                         </select>
                       </td>
                     </tr>
@@ -534,8 +534,8 @@ const handleDownloadPDF = async () => {
                           className="w-full text-center"
                         >
                           <option value="Paid">Paid</option>
-                          <option value="Unpaid">Unpaid</option>
-                          <option value="Partial">Partial</option>
+                          <option value="To Pay">To Pay</option>
+                          <option value="TBB">TBB</option>
                         </select>
                       </td>
                     </tr>

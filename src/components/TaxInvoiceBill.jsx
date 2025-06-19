@@ -5,9 +5,8 @@ import numberToWords from "number-to-words";
 import AuthorSign from "../assets/AuthorSign.png";
 
 const TaxInvoiceBill = () => {
-
   const { billData } = useContext(BillingContext);
-  
+
   function toTitleCase(str) {
     return str
       .toLowerCase()
@@ -72,8 +71,10 @@ const TaxInvoiceBill = () => {
                 <p>UDYAM-OD-19-0021152</p>
               </div>
             </div>
-            <div >
-              <p className="font-bold w-[190px] ">Invoice No: {billData.invoiceNumber}</p>
+            <div>
+              <p className="font-bold w-[190px] ">
+                Invoice No: {billData.invoiceNumber}
+              </p>
               <p className="font-bold">Date: {billData.invoiceDate}</p>
             </div>
           </div>
@@ -84,7 +85,32 @@ const TaxInvoiceBill = () => {
         </h2>
 
         {/* Bill To and Shipping To sections remain the same */}
-        <div className="flex justify-between ">
+        <div className="flex justify-between mb-2.5 ">
+          <div className="w-[397px] pr-4">
+            <p className="font-bold mb-1">Sender:</p>
+            <p>Company Name:</p>
+            <input
+              value={billData.shippingTocompanyName}
+              readOnly
+              className="w-full pl-1.5 outline outline-black rounded-[2px] h-[20px] mb-2"
+            />
+            <p>Address:</p>
+            <textarea
+              value={billData.shippingToAddress}
+              readOnly
+              className="w-full h-[72px] leading-none pl-1 pt-1 rounded-[3px] mb-[10px] resize-none outline outline-black"
+            />
+            <div>
+              <div className="flex gap-1 items-center">
+                <p>From:</p>
+                <input
+                  value={billData.from}
+                  readOnly
+                  className="w-full pl-1.5 outline outline-black rounded-[2px]"
+                />
+              </div>
+            </div>
+          </div>
           <div className="w-[397px] pr-4">
             <p className="font-bold mb-1">Bill To:</p>
             <p>Company Name:</p>
@@ -100,53 +126,12 @@ const TaxInvoiceBill = () => {
               className="w-full h-[72px] leading-none pl-1 pt-1 rounded-[3px] mb-[10px] resize-none outline outline-black"
             />
             <div>
-              <div className="flex gap-1">
-                <p className="mb-1">GSTIN:</p>
-                <input
-                  value={billData.gstin}
-                  readOnly
-                  className="w-full pl-1.5 rounded-[2px] mb-2"
-                />
-              </div>
-              <div className="flex gap-1 items-center">
-                <p>From:</p>
-                <input
-                  value={billData.from}
-                  readOnly
-                  className="w-full pl-1.5 h-[40px] rounded-[2px]"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="w-[397px] pr-4">
-            <p className="font-bold mb-1">Shipping To:</p>
-            <p>Company Name:</p>
-            <input
-              value={billData.shippingTocompanyName}
-              readOnly
-              className="w-full pl-1.5 outline outline-black rounded-[2px] h-[20px] mb-2"
-            />
-            <p>Address:</p>
-            <textarea
-              value={billData.shippingToAddress}
-              readOnly
-              className="w-full h-[72px] leading-none pl-1 pt-1 rounded-[3px] mb-[10px] resize-none outline outline-black"
-            />
-            <div>
-              <div className="flex gap-1">
-                <p className="mb-1">GSTIN:</p>
-                <input
-                  value={billData.shippingTogstin}
-                  readOnly
-                  className="w-full pl-1.5 rounded-[2px]"
-                />
-              </div>
               <div className="flex gap-1 items-center">
                 <p>To:</p>
                 <input
                   value={billData.to}
                   readOnly
-                  className="w-full pl-1.5 h-[40px] rounded-[2px]"
+                  className="w-full pl-1.5 outline outline-black rounded-[2px]"
                 />
               </div>
             </div>
@@ -164,7 +149,7 @@ const TaxInvoiceBill = () => {
               GR No.
             </th>
             <th className="outline outline-black px-1 text-center w-[80px]">
-              No. Of Packages
+              Packages
             </th>
             <th className="outline outline-black px-1 text-center w-[80px]">
               Weight
@@ -205,25 +190,25 @@ const TaxInvoiceBill = () => {
               {billData.weight} Kg
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {billData.perKgPrice} 
+              {billData.perKgPrice}
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {freight.toFixed(2)} 
+              {freight.toFixed(2)}
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              50.00 
+              50.00
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {pickup.toFixed(2)} 
+              {pickup.toFixed(2)}
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {delivery.toFixed(2)} 
+              {delivery.toFixed(2)}
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {otherExpenses.toFixed(2)} 
+              {otherExpenses.toFixed(2)}
             </td>
             <td className="outline outline-black px-1 text-center py-1">
-              {subTotal.toFixed(2)} 
+              {subTotal.toFixed(2)}
             </td>
           </tr>
         </tbody>
@@ -241,11 +226,11 @@ const TaxInvoiceBill = () => {
         <div className="ml-auto w-[397px]  text-right bg-purple-200">
           <div className="flex justify-between  px-3 bg-purple-600 text-[15.6px] font-semibold">
             <span>Sub Total:</span>
-            <span>{subTotal.toFixed(2)}  </span>
+            <span>{subTotal.toFixed(2)} </span>
           </div>
           <div className="flex justify-between px-3">
             <span>IGST {igstRate}%</span>
-            <span>{igst.toFixed(2)}  </span>
+            <span>{igst.toFixed(2)} </span>
           </div>
           <div className="flex justify-between px-3">
             <span>SGST {sgstRate}%</span>
@@ -257,7 +242,7 @@ const TaxInvoiceBill = () => {
           </div>
           <div className="flex justify-between px-3 text-[15.6px] font-semibold text-black">
             <span>Total</span>
-            <span> ₹ {total.toFixed(2)}  </span>
+            <span> ₹ {total.toFixed(2)} </span>
           </div>
         </div>
       </div>
