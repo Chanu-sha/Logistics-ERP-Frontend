@@ -401,7 +401,7 @@ function DocketBill({ copyTexts }) {
                       value={billData.grnNumber}
                       readOnly
                       type="text"
-                      className="outline outline-black ml-1 pl-1.5 rounded-sm w-[85px] h-[28.8px]"
+                      className="outline outline-black ml-1 pl-1.5 rounded-sm w-[80px] h-[28.8px]"
                     />
                   </div>
                   <div>

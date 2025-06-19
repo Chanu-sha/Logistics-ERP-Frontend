@@ -198,7 +198,7 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 }
                 className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
               />
-              <div className="flex gap-1 items-center">
+              <div className="flex flex-col gap-1 items-start">
                 <p>From:</p>
                 <input
                   value={billData.from}
@@ -223,7 +223,7 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 onChange={(e) => handleInputChange("address", e.target.value)}
                 className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
               />
-              <div className="flex gap-1 items-center">
+              <div className="flex flex-col gap-1 items-start">
                 <p>To:</p>
                 <input
                   value={billData.to}
