@@ -36,40 +36,46 @@ function DocketForm() {
     sgstPercentage: 0,
   });
 
-  useEffect(() => {
-    const prefilled = location.state?.prefilledData;
+useEffect(() => {
+  const prefilled = location.state?.prefilledData;
+
+  const fetchGRNNumber = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_DOCKET_API}/generate/grn-number`
+      );
+      if (response.status === 200) {
+        setFormState((prev) => ({
+          ...prev,
+          grnNumber: response.data.grnNumber,
+          consignerName: prefilled?.consignerName || "",
+          consignerAddress: prefilled?.consignerAddress || "",
+        }));
+      }
+    } catch (err) {
+      console.error("Error fetching GRN Number:", err);
+      alert("Failed to fetch GRN Number from server");
+    }
+  };
+
+  if (prefilled) {
     setFormState((prev) => ({
       ...prev,
-      consignerName: prefilled?.consignerName || "",
-      consignerAddress: prefilled?.consignerAddress || "",
-      grnNumber: prefilled?.grnNumber || "",
+      consignerName: prefilled.consignerName || "",
+      consignerAddress: prefilled.consignerAddress || "",
+      grnNumber: prefilled.grnNumber || "",
     }));
-  }, [location.state]);
 
-  useEffect(() => {
-    const prefilled = location.state?.prefilledData;
-
-    const fetchGRNNumber = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_APP_DOCKET_API}/generate/grn-number`
-        );
-        if (response.status === 200) {
-          setFormState((prev) => ({
-            ...prev,
-            grnNumber: response.data.grnNumber,
-            consignerName: prefilled?.consignerName || "",
-            consignerAddress: prefilled?.consignerAddress || "",
-          }));
-        }
-      } catch (err) {
-        console.error("Error fetching GRN Number:", err);
-        alert("Failed to fetch GRN Number from server");
-      }
-    };
-
+    // If grnNumber is not already in prefilled data, then fetch
+    if (!prefilled.grnNumber) {
+      fetchGRNNumber();
+    }
+  } else {
+    // No prefilled data, generate fresh GRN number
     fetchGRNNumber();
-  }, [location.state]);
+  }
+}, [location.state]);
+
 
   const calculateFreightCharges = (weight, price) => {
     const w = parseFloat(weight) || 0;

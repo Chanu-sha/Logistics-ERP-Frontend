@@ -38,7 +38,10 @@ export default function DocketEditPage() {
 
   const handleNumberChange = (e) => {
     const { name, value } = e.target;
-    setBillData((prev) => ({ ...prev, [name]: Number(value) }));
+    setBillData((prev) => ({
+      ...prev,
+      [name]: value === "" ? "" : Number(value),
+    }));
   };
 
   const handleSave = async () => {
@@ -162,8 +165,7 @@ export default function DocketEditPage() {
                   <div>
                     <strong>Date:</strong>
                     <input
-                      type="text"
-                      name="invoiceDate"
+                      name="grDate"
                       value={billData.grDate?.slice(0, 10)}
                       onChange={handleChange}
                       className="outline outline-black pl-1 ml-[24px] mt-[8px] rounded-sm w-[80px] h-[28.8px]"
@@ -249,16 +251,18 @@ export default function DocketEditPage() {
                         Description of Goods:
                       </label>
                       <input
+                        name="saidToContain"
                         value={billData.saidToContain}
-                        readOnly
+                        onChange={handleChange}
                         className="outline pl-1 outline-black rounded-sm w-[310px] h-[28.8px]"
                       />
                     </div>
                     <div className="flex flex-col gap-1">
                       <strong>Invoice No.:</strong>
                       <input
+                        name="invoiceNumber"
                         value={billData.invoiceNumber}
-                        readOnly
+                        onChange={handleChange}
                         type="text"
                         className="outline pl-1.5 outline-black rounded-sm w-[116px] h-[28.8px]"
                       />
@@ -266,10 +270,10 @@ export default function DocketEditPage() {
                     <div className="flex flex-col gap-1">
                       <strong>Invoce Date:</strong>
                       <input
-                        value={billData.invoiceDate}
-                        readOnly
-                        type="text"
-                        className="outline pl-1.5 outline-black  rounded-sm w-[96px] h-[28.8px]"
+                        name="invoiceDate"
+                        value={billData.invoiceDate?.slice(0, 10)}
+                        onChange={handleChange}
+                        className="outline pl-1.5 outline-black rounded-sm w-[95px] h-[28.8px]"
                       />
                     </div>
                   </div>
@@ -488,13 +492,16 @@ export default function DocketEditPage() {
                       Actual Weight
                     </td>
                     <td className="outline outline-black p-2 text-center">
-                      <input
-                        name="weight"
-                        value={billData.weight}
-                        onChange={handleChange}
-                        type="text"
-                        className="w-full  text-center"
-                      />
+                      <div className="flex items-center justify-center">
+                        <input
+                          name="weight"
+                          value={billData.weight}
+                          onChange={handleNumberChange}
+                          type="number"
+                          className="w-full text-center"
+                        />
+                        <span className="ml-1">KG</span>
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -502,13 +509,16 @@ export default function DocketEditPage() {
                       Chargeable Weight
                     </td>
                     <td className="outline outline-black p-2 text-center">
-                      <input
-                        name="chargeableWeight"
-                        value={billData.chargeableWeight}
-                        onChange={handleChange}
-                        type="text"
-                        className="w-full text-center"
-                      />
+                      <div className="flex items-center justify-center">
+                        <input
+                          name="chargeableWeight"
+                          value={billData.chargeableWeight}
+                          onChange={handleNumberChange}
+                          type="number"
+                          className="w-[50px] text-center"
+                        />
+                        <span className="ml-1">KG</span>
+                      </div>
                     </td>
                   </tr>
                   <tr>
@@ -520,11 +530,11 @@ export default function DocketEditPage() {
                         name="transportMode"
                         value={billData.transportMode}
                         onChange={handleChange}
-                        className="w-full  text-[12px] text-center"
+                        className="w-full text-[14px] text-center"
                       >
-                        <option value="Road">Surface</option>
-                        <option value="Air">Air</option>
-                        <option value="Rail">Train</option>
+                        <option className="text-[13px]" value="Air">Air</option>
+                        <option className="text-[13px]" value="Surface">Surface</option>
+                        <option className="text-[13px]" value="Train">Train</option>
                       </select>
                     </td>
                   </tr>

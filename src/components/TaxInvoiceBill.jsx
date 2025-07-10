@@ -75,7 +75,7 @@ const TaxInvoiceBill = () => {
               <p className="font-bold w-[190px] ">
                 Invoice No: {billData.invoiceNumber}
               </p>
-              <p className="font-bold">Date: {billData.invoiceDate}</p>
+              <p className="font-bold ">Date: {billData.invoiceDate}</p>
             </div>
           </div>
         </div>

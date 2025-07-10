@@ -165,6 +165,7 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 <div className="flex gap-1.5">
                   <p className="font-bold">Date:</p>
                   <input
+                  className="font-bold"
                     value={billData.invoiceDate}
                     onChange={(e) =>
                       handleInputChange("invoiceDate", e.target.value)
