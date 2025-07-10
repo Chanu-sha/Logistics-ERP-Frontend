@@ -65,7 +65,26 @@ export default function DocketEditPage() {
     // Temporarily remove borders for export
     billRef.current.style.border = "none";
 
-    // Optionally, remove borders of all children too
+    // Store original styles and values of select fields
+    const selects = billRef.current.querySelectorAll("select");
+    const originalSelects = Array.from(selects).map((select) => ({
+      el: select,
+      value: select.value,
+      parent: select.parentElement,
+      nextSibling: select.nextSibling,
+    }));
+
+    // Replace selects with span elements showing their values
+    originalSelects.forEach(({ el, value, parent }) => {
+      const span = document.createElement("span");
+      span.textContent = value;
+      span.style.fontWeight = "bold";
+      span.style.padding = "4px";
+      span.className = "temp-span-for-export";
+      parent.replaceChild(span, el);
+    });
+
+    // Remove borders of all elements
     const allElements = billRef.current.querySelectorAll("*");
     const originalBorders = [];
     allElements.forEach((el, i) => {
@@ -74,6 +93,8 @@ export default function DocketEditPage() {
     });
 
     try {
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+
       const dataUrl = await domtoimage.toPng(billRef.current, {
         quality: 1,
         width: billRef.current.offsetWidth,
@@ -90,7 +111,14 @@ export default function DocketEditPage() {
     } catch (error) {
       console.error("Error generating PDF:", error);
     } finally {
-      // Restore original styles
+      // Restore selects
+      const spans = billRef.current.querySelectorAll(".temp-span-for-export");
+      spans.forEach((span, index) => {
+        const { el, parent } = originalSelects[index];
+        parent.replaceChild(el, span);
+      });
+
+      // Restore styles
       billRef.current.setAttribute("style", originalStyle);
       allElements.forEach((el, i) => {
         el.style.border = originalBorders[i];
@@ -532,9 +560,15 @@ export default function DocketEditPage() {
                         onChange={handleChange}
                         className="w-full text-[14px] text-center"
                       >
-                        <option className="text-[13px]" value="Air">Air</option>
-                        <option className="text-[13px]" value="Surface">Surface</option>
-                        <option className="text-[13px]" value="Train">Train</option>
+                        <option className="text-[13px]" value="Air">
+                          Air
+                        </option>
+                        <option className="text-[13px]" value="Surface">
+                          Surface
+                        </option>
+                        <option className="text-[13px]" value="Train">
+                          Train
+                        </option>
                       </select>
                     </td>
                   </tr>

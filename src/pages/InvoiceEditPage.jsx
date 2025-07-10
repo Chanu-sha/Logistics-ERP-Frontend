@@ -165,7 +165,7 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 <div className="flex gap-1.5">
                   <p className="font-bold">Date:</p>
                   <input
-                  className="font-bold"
+                    className="font-bold"
                     value={billData.invoiceDate}
                     onChange={(e) =>
                       handleInputChange("invoiceDate", e.target.value)
@@ -283,11 +283,11 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 </td>
                 <td className="outline text-center py-[5px]">
                   <input
-                    value={`${billData.perKgPrice}.00`}
+                    value={parseFloat(billData.perKgPrice || 0).toFixed(2)}
                     onChange={(e) =>
                       handleInputChange("perKgPrice", e.target.value)
                     }
-                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px] rounded-[2px]"
                   />
                 </td>
                 <td className="outline text-center py-[5px]">
@@ -296,23 +296,25 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 <td className="outline text-center py-[5px]">50.00</td>
                 <td className="outline text-center py-[5px]">
                   <input
-                    value={`${billData.pickupCharges}.00`}
+                    value={parseFloat(billData.pickupCharges || 0).toFixed(2)}
                     onChange={(e) =>
                       handleInputChange("pickupCharges", e.target.value)
                     }
-                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px] rounded-[2px]"
                   />
                 </td>
                 <td className="outline text-center py-[5px]">
                   <input
-                    value={`${billData.deliveryCharges}.00`}
+                    value={parseFloat(billData.deliveryCharges || 0).toFixed(2)}
                     onChange={(e) =>
                       handleInputChange("deliveryCharges", e.target.value)
                     }
-                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px] rounded-[2px]"
                   />
                 </td>
-                <td className="outline text-center py-[5px]">{subTotal.toFixed(2)}</td>
+                <td className="outline text-center py-[5px]">
+                  {subTotal.toFixed(2)}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -329,24 +331,71 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 <p className="font-semibold">Sub Total: </p>{" "}
                 <p>₹{subTotal.toFixed(2)}</p>
               </div>
+
               <div className="w-full flex justify-between items-center">
-                <p className="font-semibold">IGST {igstPercentage}%:</p>{" "}
+                <label className="font-semibold">
+                  IGST %
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={billData.igstPercentage}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "igstPercentage",
+                        parseFloat(e.target.value)
+                      )
+                    }
+                    className="ml-2 w-[60px] pl-1 rounded-[2px]"
+                  />
+                </label>
                 <p>₹{igst.toFixed(2)}</p>
               </div>
+
               <div className="w-full flex justify-between items-center">
-                <p className="font-semibold">SGST {sgstPercentage}%:</p>{" "}
+                <label className="font-semibold">
+                  SGST %
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={billData.sgstPercentage}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "sgstPercentage",
+                        parseFloat(e.target.value)
+                      )
+                    }
+                    className="ml-2 w-[60px] pl-1 rounded-[2px]"
+                  />
+                </label>
                 <p>₹{sgst.toFixed(2)}</p>
               </div>
+
               <div className="w-full flex justify-between items-center">
-                <p className="font-semibold">CGST {cgstPercentage}%:</p>{" "}
+                <label className="font-semibold">
+                  CGST %
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={billData.cgstPercentage}
+                    onChange={(e) =>
+                      handleInputChange(
+                        "cgstPercentage",
+                        parseFloat(e.target.value)
+                      )
+                    }
+                    className="ml-2 w-[60px] pl-1 rounded-[2px]"
+                  />
+                </label>
                 <p>₹{cgst.toFixed(2)}</p>
               </div>
+
               <div className="w-full flex justify-between items-center ">
                 <p className="font-bold text-lg">Total:</p>
                 <p className="font-bold text-lg">₹{total.toFixed(2)}</p>
               </div>
             </div>
           </div>
+
           <table className="w-full mt-6 border-collapse">
             <thead>
               <tr>
