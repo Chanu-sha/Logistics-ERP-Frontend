@@ -13,12 +13,12 @@ function AdminNavbar() {
   ];
 
   return (
-    <aside className="w-64 bg-blue-800 text-white min-h-screen p-6">
+    <aside className="w-64 bg-blue-800 text-white min-h-screen p-6 pr-2.5">
       <div className="mb-8 flex items-center">
-        <img src={Logo} className="h-12  mr-4" />
-        <div>
-          <h2 className="font-bold">Tapan Mandal</h2>
-          <a href="https://shreesailogistics.in/" className="text-sm">shreesailogistics.in</a>
+        <img src={Logo} className="h-12  mr-2" />
+        <div  className=" text-center w-[180px]" >
+          <h2 className="font-bold text-[12px]">SHREE SAI LOGISTICS</h2>
+          <a href="https://shreesailogistics.in/" className="text-[12.5px]">shreesailogistics.in</a>
         </div>
       </div>
       <nav className="space-y-2">

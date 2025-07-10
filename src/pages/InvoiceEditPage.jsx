@@ -184,20 +184,19 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
               <p className="font-bold mb-1">Sender:</p>
               <p>Company Name:</p>
               <input
-                value={billData.shippingTocompanyName}
+                value={billData.companyName}
                 onChange={(e) =>
-                  handleInputChange("shippingTocompanyName", e.target.value)
+                  handleInputChange("companyName", e.target.value)
                 }
                 className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px] mb-2"
               />
               <p>Address:</p>
               <textarea
-                value={billData.shippingToAddress}
-                onChange={(e) =>
-                  handleInputChange("shippingToAddress", e.target.value)
-                }
+                value={billData.address}
+                onChange={(e) => handleInputChange("address", e.target.value)}
                 className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
               />
+
               <div className="flex flex-col gap-1 items-start">
                 <p>From:</p>
                 <input
@@ -211,16 +210,18 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
               <p className="font-bold mb-1">Bill To:</p>
               <p>Company Name:</p>
               <input
-                value={billData.companyName}
+                value={billData.shippingTocompanyName}
                 onChange={(e) =>
-                  handleInputChange("companyName", e.target.value)
+                  handleInputChange("shippingTocompanyName", e.target.value)
                 }
                 className="w-full pl-1.5 outline-black outline rounded-[2px] h-[20px] mb-2"
               />
               <p>Address:</p>
               <textarea
-                value={billData.address}
-                onChange={(e) => handleInputChange("address", e.target.value)}
+                value={billData.shippingToAddress}
+                onChange={(e) =>
+                  handleInputChange("shippingToAddress", e.target.value)
+                }
                 className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
               />
               <div className="flex flex-col gap-1 items-start">
@@ -237,80 +238,80 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
           <table className="w-full text-left border-collapse mt-2">
             <thead className="bg-purple-300">
               <tr>
-                <th className="outline px-1 text-center">SR No.</th>
-                <th className="outline px-1 text-center">Gr No.</th>
-                <th className="outline px-1 text-center">Packages</th>
-                <th className="outline px-1 text-center">Weight</th>
-                <th className="outline px-1 text-center">Price/Kg</th>
-                <th className="outline px-1 text-center">Freight</th>
-                <th className="outline px-1 text-center">Docket</th>
-                <th className="outline px-1 text-center">Pickup</th>
-                <th className="outline px-1 text-center">Delivery</th>
-                <th className="outline px-1 text-center">Total</th>
+                <th className="outline px-1 text-center py-2 ">SR No.</th>
+                <th className="outline px-1 text-center py-2 ">Gr No.</th>
+                <th className="outline px-1 text-center py-2 ">Packages</th>
+                <th className="outline px-1 text-center py-2 ">Weight</th>
+                <th className="outline px-1 text-center py-2 ">Price/Kg</th>
+                <th className="outline px-1 text-center py-2 ">Freight</th>
+                <th className="outline px-1 text-center py-2 ">Docket</th>
+                <th className="outline px-1 text-center py-2 ">Pickup</th>
+                <th className="outline px-1 text-center py-2 ">Delivery</th>
+                <th className="outline px-1 text-center py-2 ">Total</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="outline text-center">1</td>
-                <td className="outline text-center">
+                <td className="outline text-center py-[5px]">1</td>
+                <td className="outline text-center py-[5px]">
                   <input
                     value={billData.grnNumber}
                     onChange={(e) =>
                       handleInputChange("grnNumber", e.target.value)
                     }
-                    className="w-[50px] text-center  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
                   />
                 </td>
-                <td className="outline text-center">
+                <td className="outline text-center py-[5px]">
                   <input
                     value={billData.packageCount}
                     onChange={(e) =>
                       handleInputChange("packageCount", e.target.value)
                     }
-                    className="w-[50px] text-center  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
                   />
                 </td>
-                <td className="outline text-center">
+                <td className="outline text-center py-[5px]">
                   <input
                     value={billData.weight}
                     onChange={(e) =>
                       handleInputChange("weight", e.target.value)
                     }
-                    className="w-[50px] text-center  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
                   />
                 </td>
-                <td className="outline text-center">
+                <td className="outline text-center py-[5px]">
                   <input
-                    value={billData.perKgPrice}
+                    value={`${billData.perKgPrice}.00`}
                     onChange={(e) =>
                       handleInputChange("perKgPrice", e.target.value)
                     }
-                    className="w-[50px] text-center  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
                   />
                 </td>
-                <td className="outline text-center">
+                <td className="outline text-center py-[5px]">
                   {billData.freightCharges}
                 </td>
-                <td className="outline text-center">50.00</td>
-                <td className="outline text-center">
+                <td className="outline text-center py-[5px]">50.00</td>
+                <td className="outline text-center py-[5px]">
                   <input
-                    value={billData.pickupCharges}
+                    value={`${billData.pickupCharges}.00`}
                     onChange={(e) =>
                       handleInputChange("pickupCharges", e.target.value)
                     }
-                    className="w-[50px] text-center  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
                   />
                 </td>
-                <td className="outline text-center">
+                <td className="outline text-center py-[5px]">
                   <input
-                    value={billData.deliveryCharges}
+                    value={`${billData.deliveryCharges}.00`}
                     onChange={(e) =>
                       handleInputChange("deliveryCharges", e.target.value)
                     }
-                    className="w-[50px] text-center  rounded-[2px]"
+                    className="w-[50px] text-center py-[5px]  rounded-[2px]"
                   />
                 </td>
-                <td className="outline text-center">{subTotal.toFixed(2)}</td>
+                <td className="outline text-center py-[5px]">{subTotal.toFixed(2)}</td>
               </tr>
             </tbody>
           </table>

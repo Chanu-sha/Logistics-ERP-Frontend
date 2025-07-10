@@ -90,13 +90,13 @@ const TaxInvoiceBill = () => {
             <p className="font-bold mb-1">Sender:</p>
             <p>Company Name:</p>
             <input
-              value={billData.shippingTocompanyName}
+              value={billData.companyName}
               readOnly
               className="w-full pl-1.5 outline outline-black rounded-[2px] h-[20px] mb-2"
             />
             <p>Address:</p>
             <textarea
-              value={billData.shippingToAddress}
+              value={billData.address}
               readOnly
               className="w-full h-[72px] leading-none pl-1 pt-1 rounded-[3px] mb-[10px] resize-none outline outline-black"
             />
@@ -115,13 +115,13 @@ const TaxInvoiceBill = () => {
             <p className="font-bold mb-1">Bill To:</p>
             <p>Company Name:</p>
             <input
-              value={billData.companyName}
+              value={billData.shippingTocompanyName}
               readOnly
               className="w-full pl-1.5 outline outline-black rounded-[2px] h-[20px] mb-2"
             />
             <p>Address:</p>
             <textarea
-              value={billData.address}
+              value={billData.shippingToAddress}
               readOnly
               className="w-full h-[72px] leading-none pl-1 pt-1 rounded-[3px] mb-[10px] resize-none outline outline-black"
             />
@@ -179,35 +179,35 @@ const TaxInvoiceBill = () => {
         </thead>
         <tbody>
           <tr>
-            <td className="outline outline-black px-1 py-1">1</td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">1</td>
+            <td className="outline outline-black px-1 text-center py-2.5">
               {billData.grnNumber}
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               {billData.packageCount}
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               {billData.weight} Kg
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
-              {billData.perKgPrice}
+            <td className="outline outline-black px-1 text-center py-2.5">
+              {`${billData.perKgPrice}.00`}
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               {freight.toFixed(2)}
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               50.00
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               {pickup.toFixed(2)}
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               {delivery.toFixed(2)}
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               {otherExpenses.toFixed(2)}
             </td>
-            <td className="outline outline-black px-1 text-center py-1">
+            <td className="outline outline-black px-1 text-center py-2.5">
               {subTotal.toFixed(2)}
             </td>
           </tr>
