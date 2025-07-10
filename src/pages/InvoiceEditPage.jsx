@@ -291,7 +291,7 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                   />
                 </td>
                 <td className="outline text-center py-[5px]">
-                  {billData.freightCharges}
+                  {parseFloat(billData.freightCharges || 0).toFixed(2)}
                 </td>
                 <td className="outline text-center py-[5px]">50.00</td>
                 <td className="outline text-center py-[5px]">
