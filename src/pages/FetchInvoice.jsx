@@ -95,14 +95,14 @@ function FetchInvoice() {
         />
       </Modal>
 
-      <table className="w-full table-auto text-sm">
+      <table className="w-full table-fixed text-sm">
         <thead>
           <tr className="text-left bg-gray-100">
-            <th className="p-2">Invoice Number</th>
-            <th className="p-2">Company</th>
-            <th className="p-2">Shipping To</th>
-            <th className="p-2">Invoice Date</th>
-            <th className="p-2">Actions</th>
+            <th className="p-2 w-36">Invoice Number</th>
+            <th className="p-2 w-40">Company</th>
+            <th className="p-2 w-48">Shipping To</th>
+            <th className="p-2 w-32">Invoice Date</th>
+            <th className="p-2 w-44">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -112,11 +112,11 @@ function FetchInvoice() {
                 key={inv._id || index}
                 className="border border-black hover:bg-gray-50"
               >
-                <td className="p-2">{inv.invoiceNumber}</td>
-                <td className="p-2">{inv.companyName}</td>
-                <td className="p-2">{inv.shippingTocompanyName}</td>
-                <td className="p-2">{inv.invoiceDate}</td>
-                <td className="p-2 space-x-2">
+                <td className="p-2 truncate">{inv.invoiceNumber}</td>
+                <td className="p-2 truncate">{inv.companyName}</td>
+                <td className="p-2 truncate">{inv.shippingTocompanyName}</td>
+                <td className="p-2 truncate">{inv.invoiceDate}</td>
+                <td className="p-2 truncate space-x-2">
                   <button
                     className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
                     onClick={() => handleAddClick(inv)}

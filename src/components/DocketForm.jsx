@@ -36,63 +36,64 @@ function DocketForm() {
     sgstPercentage: 0,
   });
 
-useEffect(() => {
-  const prefilled = location.state?.prefilledData;
+  useEffect(() => {
+    const prefilled = location.state?.prefilledData;
 
-  const fetchGRNNumber = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_APP_DOCKET_API}/generate/grn-number`
-      );
-      if (response.status === 200) {
-        setFormState((prev) => ({
-          ...prev,
-          grnNumber: response.data.grnNumber,
-          consignerName: prefilled?.consignerName || "",
-          consignerAddress: prefilled?.consignerAddress || "",
-        }));
+    const fetchGRNNumber = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_DOCKET_API}/generate/grn-number`
+        );
+        if (response.status === 200) {
+          setFormState((prev) => ({
+            ...prev,
+            grnNumber: response.data.grnNumber,
+            consignerName: prefilled?.consignerName || "",
+            consignerAddress: prefilled?.consignerAddress || "",
+          }));
+        }
+      } catch (err) {
+        console.error("Error fetching GRN Number:", err);
+        alert("Failed to fetch GRN Number from server");
       }
-    } catch (err) {
-      console.error("Error fetching GRN Number:", err);
-      alert("Failed to fetch GRN Number from server");
-    }
-  };
+    };
 
-  if (prefilled) {
-    setFormState((prev) => ({
-      ...prev,
-      consignerName: prefilled.consignerName || "",
-      consignerAddress: prefilled.consignerAddress || "",
-      grnNumber: prefilled.grnNumber || "",
-    }));
+    if (prefilled) {
+      setFormState((prev) => ({
+        ...prev,
+        consignerName: prefilled.consignerName || "",
+        consignerAddress: prefilled.consignerAddress || "",
+        grnNumber: prefilled.grnNumber || "",
+      }));
 
-    // If grnNumber is not already in prefilled data, then fetch
-    if (!prefilled.grnNumber) {
+      // If grnNumber is not already in prefilled data, then fetch
+      if (!prefilled.grnNumber) {
+        fetchGRNNumber();
+      }
+    } else {
+      // No prefilled data, generate fresh GRN number
       fetchGRNNumber();
     }
-  } else {
-    // No prefilled data, generate fresh GRN number
-    fetchGRNNumber();
-  }
-}, [location.state]);
+  }, [location.state]);
 
-
-  const calculateFreightCharges = (weight, price) => {
-    const w = parseFloat(weight) || 0;
+  const calculateFreightCharges = (chargeableWeight, price) => {
+    const w = parseFloat(chargeableWeight) || 0;
     const p = parseFloat(price) || 0;
     return (w * p).toFixed(2);
   };
 
-  const handleWeightPriceChange = (e) => {
+  const handleChargeableWeightPriceChange = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => {
       const newState = { ...prev, [name]: value };
-      if (name === "weight" || name === "perKgPrice") {
+
+      if (name === "chargeableWeight" || name === "perKgPrice") {
         newState.freightCharges = calculateFreightCharges(
-          name === "weight" ? value : prev.weight,
+          name === "chargeableWeight" ? value : prev.chargeableWeight,
           name === "perKgPrice" ? value : prev.perKgPrice
         );
       }
+
       return newState;
     });
   };
@@ -249,7 +250,7 @@ useEffect(() => {
               <input
                 name="weight"
                 value={formState.weight}
-                onChange={handleWeightPriceChange}
+                onChange={handleChange}
                 placeholder="Weight (kg)"
                 type="number"
                 step="0.01"
@@ -258,7 +259,7 @@ useEffect(() => {
               <input
                 name="chargeableWeight"
                 value={formState.chargeableWeight}
-                onChange={handleChange}
+                onChange={handleChargeableWeightPriceChange}
                 placeholder="Chargeable Weight"
                 type="number"
                 step="0.01"
@@ -267,7 +268,7 @@ useEffect(() => {
               <input
                 name="perKgPrice"
                 value={formState.perKgPrice}
-                onChange={handleWeightPriceChange}
+                onChange={handleChargeableWeightPriceChange}
                 placeholder="Per Kg Price (₹)"
                 type="number"
                 step="0.01"

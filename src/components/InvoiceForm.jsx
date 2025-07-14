@@ -54,22 +54,24 @@ function InvoiceForm() {
     sgstPercentage: 0,
   });
 
-  const calculateFreightCharges = (weight, price) => {
-    const w = parseFloat(weight) || 0;
+  const calculateFreightCharges = (chargeableWeight, price) => {
+    const w = parseFloat(chargeableWeight) || 0;
     const p = parseFloat(price) || 0;
     return (w * p).toFixed(2);
   };
 
-  const handleWeightPriceChange = (e) => {
+  const handleChargeableWeightPriceChange = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => {
       const newState = { ...prev, [name]: value };
-      if (name === "weight" || name === "perKgPrice") {
+
+      if (name === "chargeableWeight" || name === "perKgPrice") {
         newState.freightCharges = calculateFreightCharges(
-          name === "weight" ? value : prev.weight,
+          name === "chargeableWeight" ? value : prev.chargeableWeight,
           name === "perKgPrice" ? value : prev.perKgPrice
         );
       }
+
       return newState;
     });
   };
@@ -207,23 +209,29 @@ function InvoiceForm() {
             <input
               name="weight"
               value={formState.weight}
-              onChange={handleWeightPriceChange}
+              onChange={handleChange}
               placeholder="Weight (kg)"
-              className="border p-2 rounded"
+              type="number"
+              step="0.01"
+              className="border p-2 rounded text-sm"
             />
             <input
               name="chargeableWeight"
               value={formState.chargeableWeight}
-              onChange={handleChange}
+              onChange={handleChargeableWeightPriceChange}
               placeholder="Chargeable Weight"
-              className="border p-2 rounded"
+              type="number"
+              step="0.01"
+              className="border p-2 rounded text-sm"
             />
             <input
               name="perKgPrice"
               value={formState.perKgPrice}
-              onChange={handleWeightPriceChange}
-              placeholder="₹/kg"
-              className="border p-2 rounded"
+              onChange={handleChargeableWeightPriceChange}
+              placeholder="Per Kg Price (₹)"
+              type="number"
+              step="0.01"
+              className="border p-2 rounded text-sm"
             />
             <input
               name="freightCharges"

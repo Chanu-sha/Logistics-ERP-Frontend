@@ -77,14 +77,14 @@ function FetchDocket() {
         />
       </div>
 
-      <table className="w-full table-auto text-sm">
+      <table className="w-full table-fixed text-sm">
         <thead>
           <tr className="text-left bg-gray-100">
-            <th className="p-2">GRN Number</th>
-            <th className="p-2">Consigner</th>
-            <th className="p-2">Consignee</th>
-            <th className="p-2">Invoice Date</th>
-            <th className="p-2">Actions</th>
+            <th className="p-2 w-32">GRN Number</th>
+            <th className="p-2 w-40">Consigner</th>
+            <th className="p-2 w-40">Consignee</th>
+            <th className="p-2 w-32">Invoice Date</th>
+            <th className="p-2 w-40">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -94,11 +94,11 @@ function FetchDocket() {
                 key={docket._id}
                 className="border border-black hover:bg-gray-50"
               >
-                <td className="p-2">{docket.grnNumber}</td>
-                <td className="p-2">{docket.consignerName}</td>
-                <td className="p-2">{docket.consigneeName}</td>
-                <td className="p-2">{docket.invoiceDate}</td>
-                <td className="p-2 space-x-2">
+                <td className="p-2 truncate ">{docket.grnNumber}</td>
+                <td className="p-2 truncate ">{docket.consignerName}</td>
+                <td className="p-2 truncate ">{docket.consigneeName}</td>
+                <td className="p-2 truncate ">{docket.invoiceDate}</td>
+                <td className="p-2 truncate  space-x-2">
                   <button
                     className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
                     onClick={() => handleAddClick(docket)}
