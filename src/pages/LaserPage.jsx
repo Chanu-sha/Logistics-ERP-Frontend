@@ -149,7 +149,7 @@ const LaserPage = () => {
       setIsLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/statements",
+         `${import.meta.env.VITE_APP_STATEMENT_API}`,
         submissionData,
         {
           headers: { "Content-Type": "application/json" },
@@ -201,12 +201,12 @@ const LaserPage = () => {
                 <strong> MSME :</strong> UDYAM-OD-19-0021152
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-blue-800">STATEMENT</h2>
+            <h2 className="text-2xl mb-auto font-bold text-blue-800">STATEMENT</h2>
           </div>
 
           <div className="mb-6 space-y-4">
             <div className="flex gap-6">
-              <label className="flex items-center gap-2">
+              <label className="flex items-start gap-2">
                 <span className="w-30">STATEMENT DATE:</span>
                 <input
                   type="text"

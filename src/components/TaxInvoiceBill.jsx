@@ -87,7 +87,9 @@ const TaxInvoiceBill = () => {
         {/* Bill To and Shipping To sections remain the same */}
         <div className="flex justify-between mb-4 ">
           <div className="w-[397px] pr-4">
-            <p className="font-bold mb-1">Sender:</p>
+            <p className="font-bold my-1">
+              {billData.senderHeading || "Sender"}:
+            </p>
             <p>Company Name:</p>
             <input
               value={billData.companyName}
@@ -112,7 +114,7 @@ const TaxInvoiceBill = () => {
             </div>
           </div>
           <div className="w-[397px] pr-4">
-            <p className="font-bold mb-1">Bill To:</p>
+            <p className="font-bold my-1">{billData.toHeading || "Bill To"}:</p>
             <p>Company Name:</p>
             <input
               value={billData.shippingTocompanyName}

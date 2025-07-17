@@ -166,7 +166,7 @@ function LaserEditPage() {
               <div><strong>PAN:</strong> AUCNG6304N</div>
               <div><strong> MSME :</strong> UDYAM-OD-19-0021152</div>
             </div>
-            <h2 className="text-2xl font-bold text-blue-800">STATEMENT</h2>
+            <h2 className="text-2xl mb-auto font-bold text-blue-800">STATEMENT</h2>
           </div>
 
           {/* Inputs */}

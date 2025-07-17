@@ -32,6 +32,8 @@ function InvoiceForm() {
   const prefilledData = location.state?.prefilledData;
 
   const [formState, setFormState] = useState({
+    senderHeading: prefilledData?.senderHeading || "Sender",
+    toHeading: prefilledData?.toHeading || "Bill To",
     companyName: prefilledData?.companyName || "",
     address: prefilledData?.address || "",
     invoiceDate: "",
@@ -101,6 +103,31 @@ function InvoiceForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // ✅ Check for required fields
+    const requiredFields = [
+      "companyName",
+      "address",
+      "invoiceDate",
+      "grnNumber",
+      "shippingTocompanyName",
+      "shippingToAddress",
+      "packageCount",
+      "weight",
+      "chargeableWeight",
+      "perKgPrice",
+      "pickupCharges",
+      "deliveryCharges",
+      "from",
+      "to",
+    ];
+
+    for (const field of requiredFields) {
+      if (!formState[field] || formState[field].toString().trim() === "") {
+        alert(`Please fill in All field.`);
+        return;
+      }
+    }
+
     const formattedData = {
       ...formState,
       invoiceDate: formatDateToDDMMYY(formState.invoiceDate),
@@ -135,7 +162,12 @@ function InvoiceForm() {
           {/* From Company */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h2 className="font-semibold mb-1">Sender</h2>
+              <input
+                name="senderHeading"
+                value={formState.senderHeading}
+                onChange={handleChange}
+                className="font-semibold mb-1 text-lg w-full border-b border-gray-300 focus:outline-none"
+              />
               <input
                 name="companyName"
                 value={formState.companyName}
@@ -154,7 +186,12 @@ function InvoiceForm() {
 
             {/* To Company */}
             <div>
-              <h2 className="font-semibold mb-1">To</h2>
+              <input
+                name="toHeading"
+                value={formState.toHeading}
+                onChange={handleChange}
+                className="font-semibold mb-1 text-lg w-full border-b border-gray-300 focus:outline-none"
+              />
               <input
                 name="shippingTocompanyName"
                 value={formState.shippingTocompanyName}

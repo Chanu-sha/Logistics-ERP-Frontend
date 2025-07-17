@@ -113,6 +113,36 @@ function DocketForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    
+  // ✅ REQUIRED FIELD VALIDATION
+  const requiredFields = [
+    "invoiceDate",
+    "invoiceNumber",
+    "grnNumber",
+    "grDate",
+    "from",
+    "to",
+    "packageCount",
+    "transportMode",
+    "weight",
+    "chargeableWeight",
+    "perKgPrice",
+    "pickupCharges",
+    "deliveryCharges",
+    "paymentStatus",
+    "consignerName",
+    "consignerAddress",
+    "consigneeName",
+    "consigneeAddress",
+  ];
+
+  for (const field of requiredFields) {
+    if (!formState[field] || formState[field].toString().trim() === "") {
+      alert(`Please fill All field.`);
+      return;
+    }
+  }
+
     try {
       // First update context
       setBillData(formState);

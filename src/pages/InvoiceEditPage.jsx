@@ -182,7 +182,14 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
 
           <div className="flex justify-between my-4">
             <div className="w-1/2 pr-4">
-              <p className="font-bold mb-1">Sender:</p>
+              <input
+                type="text"
+                value={billData.senderHeading || "Sender"}
+                onChange={(e) =>
+                  handleInputChange("senderHeading", e.target.value)
+                }
+                className="font-bold my-1 bg-transparent outline-none"
+              />
               <p>Company Name:</p>
               <input
                 value={billData.companyName}
@@ -197,7 +204,6 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
                 onChange={(e) => handleInputChange("address", e.target.value)}
                 className="w-full h-18 pl-1 pt-1 outline-black outline rounded-[3px] mb-[10px] resize-none"
               />
-
               <div className="flex flex-col gap-1 items-start">
                 <p>From:</p>
                 <input
@@ -208,7 +214,13 @@ export default function InvoiceEditPage({ billId, onUpdate }) {
               </div>
             </div>
             <div className="w-1/2 pr-4">
-              <p className="font-bold mb-1">Bill To:</p>
+              <input
+                type="text"
+                value={billData.toHeading || "Bill To"}
+                onChange={(e) => handleInputChange("toHeading", e.target.value)}
+                className="font-bold my-1 bg-transparent outline-none"
+              />
+
               <p>Company Name:</p>
               <input
                 value={billData.shippingTocompanyName}
